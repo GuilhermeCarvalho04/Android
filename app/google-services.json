@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960995950928",
+    "project_id": "projeto-imepac-a9e30",
+    "storage_bucket": "projeto-imepac-a9e30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960995950928:android:148d3d776cf86b24722c55",
+        "android_client_info": {
+          "package_name": "br.com.faculdade.imepac"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKd7GFZJa-0S4j4p4qeefmQqnRYeWrkZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
