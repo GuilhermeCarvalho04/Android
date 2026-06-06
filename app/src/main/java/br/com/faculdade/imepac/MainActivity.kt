@@ -1,47 +1,28 @@
 package br.com.faculdade.imepac
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import br.com.faculdade.imepac.ui.theme.ImepacTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ImepacTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+
+        // Verifica se o usuário já está logado no Firebase
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null) {
+            // Se logado, vai direto para a Tela Principal
+            val intent = Intent(this, TelaPrincipal::class.java)
+            startActivity(intent)
+        } else {
+            // Se não logado, vai para a Tela de Login
+            val intent = Intent(this, FormLogin::class.java)
+            startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ImepacTheme {
-        Greeting("Android")
+        // Fecha a MainActivity para ela não ficar no histórico de telas
+        finish()
     }
 }

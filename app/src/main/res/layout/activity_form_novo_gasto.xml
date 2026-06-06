@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".FormNovoGasto">
+
+    <TextView
+        android:id="@+id/title_novo_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Novo Gasto"
+        android:textColor="@color/primary_navy"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/containerNovoGasto"
+        style="@style/ContainerComponents"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_novo_gasto"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <EditText
+        android:id="@+id/edit_descricao_gasto"
+        style="@style/Edit_Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Descrição (Ex: Supermercado)"
+        android:inputType="text"
+        android:layout_marginTop="35dp"
+        app:layout_constraintTop_toTopOf="@+id/containerNovoGasto"
+        app:layout_constraintStart_toStartOf="@+id/containerNovoGasto"
+        app:layout_constraintEnd_toEndOf="@+id/containerNovoGasto" />
+
+    <EditText
+        android:id="@+id/edit_valor_gasto"
+        style="@style/Edit_Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Valor (Ex: 49.90)"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_descricao_gasto"
+        app:layout_constraintStart_toStartOf="@+id/containerNovoGasto"
+        app:layout_constraintEnd_toEndOf="@+id/containerNovoGasto" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_salvar_gasto"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Salvar Despesa"
+        android:backgroundTint="@color/accent_teal"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/containerNovoGasto"
+        app:layout_constraintStart_toStartOf="@+id/containerNovoGasto"
+        app:layout_constraintEnd_toEndOf="@+id/containerNovoGasto" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/btn_salvar_gasto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

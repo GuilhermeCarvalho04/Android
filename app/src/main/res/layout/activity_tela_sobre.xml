@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".TelaSobre">
+
+    <TextView
+        android:id="@+id/title_sobre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sobre o App"
+        android:textColor="@color/primary_navy"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/containerSobre"
+        style="@style/ContainerComponents"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_sobre"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintTop_toTopOf="@+id/containerSobre"
+        app:layout_constraintBottom_toBottomOf="@+id/containerSobre"
+        app:layout_constraintStart_toStartOf="@+id/containerSobre"
+        app:layout_constraintEnd_toEndOf="@+id/containerSobre">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicativo Meus Gastos v1.0"
+            android:textColor="@color/primary_navy"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desenvolvido por:"
+            android:textColor="@color/primary_navy"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guilherme Carvalho Mateus"
+            android:textColor="@color/accent_teal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RA / Matrícula:"
+            android:textColor="@color/primary_navy"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2416512125"
+            android:textColor="@color/primary_navy"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Faculdade IMEPAC - 5º Período"
+            android:textColor="@color/primary_navy"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tecnologias: Kotlin, XML, Firebase Auth e Firestore"
+            android:textColor="@color/primary_navy"
+            android:textSize="12sp"
+            android:layout_marginTop="15dp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_voltar_sobre"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar ao Painel"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/containerSobre"
+        app:layout_constraintStart_toStartOf="@+id/containerSobre"
+        app:layout_constraintEnd_toEndOf="@+id/containerSobre" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

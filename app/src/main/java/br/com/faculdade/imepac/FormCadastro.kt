@@ -1,5 +1,6 @@
 package br.com.faculdade.imepac
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -57,11 +58,8 @@ class FormCadastro : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Chama a função para salvar no banco conforme o PDF
-                    salvarDadosUsuario()
-
-                    val snackbar = Snackbar.make(view, "Cadastro realizado com sucesso!", Snackbar.LENGTH_LONG)
-                    snackbar.show()
+                    // Salva os dados estruturados no banco de dados
+                    salvarDadosUsuario(view)
                 } else {
                     val erro = task.exception?.message ?: "Erro ao cadastrar usuário"
                     val snackbar = Snackbar.make(view, erro, Snackbar.LENGTH_LONG)
@@ -70,8 +68,8 @@ class FormCadastro : AppCompatActivity() {
             }
     }
 
-    // FUNÇÃO EXATAMENTE COMO NO PDF (PÁGINA 10)
-    fun salvarDadosUsuario() {
+    // Otimizado para criar o documento com o UID fixo do usuário (Evita bugs de leitura)
+    private fun salvarDadosUsuario(view: View) {
         val db = FirebaseFirestore.getInstance()
         val nome = edit_nome.text.toString().trim()
         val usuarioID = FirebaseAuth.getInstance().currentUser?.uid
@@ -84,17 +82,25 @@ class FormCadastro : AppCompatActivity() {
                 "uid" to usuarioID
             )
 
-            // Conforme o PDF: .collection("Usuarios").add(usuarios)
-            db.collection("Usuarios")
-                .add(usuarios)
-                .addOnSuccessListener { documentReference ->
-                    println("Documento adicionado com ID: ${documentReference.id}")
+            // Usando .document(usuarioID).set() vinculamos a conta diretamente ao ID de autenticação
+            db.collection("Usuarios").document(usuarioID)
+                .set(usuarios)
+                .addOnSuccessListener {
+                    val snackbar = Snackbar.make(view, "Cadastro realizado com sucesso!", Snackbar.LENGTH_LONG)
+                    snackbar.show()
+
+                    // Abre a Tela Principal e fecha a tela de cadastro
+                    val intent = Intent(this, TelaPrincipal::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 .addOnFailureListener { e ->
-                    println("Erro ao adicionar documento: $e")
+                    val snackbar = Snackbar.make(view, "Erro ao salvar dados: ${e.message}", Snackbar.LENGTH_LONG)
+                    snackbar.show()
                 }
         } else {
-            println("Erro na autenticação")
+            val snackbar = Snackbar.make(view, "Erro interno de autenticação.", Snackbar.LENGTH_LONG)
+            snackbar.show()
         }
     }
 }

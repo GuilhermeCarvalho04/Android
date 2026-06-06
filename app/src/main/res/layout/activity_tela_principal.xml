@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/light_gray"
     tools:context=".TelaPrincipal">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,28 +22,54 @@
 
     <TextView
         android:id="@+id/text_bem_vindo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo à Tela Principal"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:text="Olá!\nSeja bem-vindo."
+        android:textColor="@color/primary_navy"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bt_deslogar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_perfil" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_deslogar"
-        style="@style/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Deslogar"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_bem_vindo" />
+        app:layout_constraintTop_toBottomOf="@+id/text_bem_vindo"
+        app:layout_constraintWidth_percent="0.9">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_novo_gasto"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Novo Gasto"
+            android:backgroundTint="@color/accent_teal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_historico"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Ver Histórico de Gastos" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sobre"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Sobre o Aplicativo"
+            android:backgroundTint="@color/coral_accent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,17 +20,27 @@ class FormLogin : AppCompatActivity() {
     private lateinit var edit_email: EditText
     private lateinit var edit_senha: EditText
     private lateinit var bt_entrada: Button
+    private lateinit var progressbar: ProgressBar
+
+    override fun onStart() {
+        super.onStart()
+        // Se o usuário já estiver logado, vai direto para a Tela Principal
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+        if (usuarioAtual != null) {
+            IrParaTelaPrincipal()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_form_login)
-
         supportActionBar?.hide()
 
         edit_email = findViewById(R.id.edit_email_login)
         edit_senha = findViewById(R.id.edit_senha_login)
         bt_entrada = findViewById(R.id.bt_entrar)
+        progressbar = findViewById(R.id.progressbar)
 
         val text_tela_cadastro = findViewById<TextView>(R.id.text_tela_cadastro)
         text_tela_cadastro.setOnClickListener {
@@ -60,12 +71,19 @@ class FormLogin : AppCompatActivity() {
         val email = edit_email.text.toString().trim()
         val senha = edit_senha.text.toString().trim()
 
+        // Mostra a barra de carregamento e desabilita o botão
+        progressbar.visibility = View.VISIBLE
+        bt_entrada.isEnabled = false
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener { task ->
+                // Esconde a barra de carregamento
+                progressbar.visibility = View.INVISIBLE
+                bt_entrada.isEnabled = true
+
                 if (task.isSuccessful) {
                     IrParaTelaPrincipal()
                 } else {
-                    // Ajuste: Mensagem amigável de erro
                     val snackbar = Snackbar.make(view, "Usuário ou senha estão errados!", Snackbar.LENGTH_LONG)
                     snackbar.setBackgroundTint(Color.RED)
                     snackbar.show()
@@ -74,7 +92,6 @@ class FormLogin : AppCompatActivity() {
     }
 
     private fun IrParaTelaPrincipal() {
-        // Ajuste: Destino agora é a TelaPrincipal
         val intent = Intent(this, TelaPrincipal::class.java)
         startActivity(intent)
         finish()

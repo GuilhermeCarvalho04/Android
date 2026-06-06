@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".TelaDetalheGasto">
+
+    <TextView
+        android:id="@+id/title_detalhe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Gasto"
+        android:textColor="@color/primary_navy"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/containerDetalhe"
+        style="@style/ContainerComponents"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_detalhe"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <EditText
+        android:id="@+id/edit_detalhe_descricao"
+        style="@style/Edit_Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Descrição do Gasto"
+        android:inputType="text"
+        android:layout_marginTop="35dp"
+        app:layout_constraintTop_toTopOf="@+id/containerDetalhe"
+        app:layout_constraintStart_toStartOf="@+id/containerDetalhe"
+        app:layout_constraintEnd_toEndOf="@+id/containerDetalhe" />
+
+    <EditText
+        android:id="@+id/edit_detalhe_valor"
+        style="@style/Edit_Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Valor"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_detalhe_descricao"
+        app:layout_constraintStart_toStartOf="@+id/containerDetalhe"
+        app:layout_constraintEnd_toEndOf="@+id/containerDetalhe" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_atualizar_gasto"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Salvar Alterações"
+        android:backgroundTint="@color/accent_teal"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/containerDetalhe"
+        app:layout_constraintStart_toStartOf="@+id/containerDetalhe"
+        app:layout_constraintEnd_toEndOf="@+id/containerDetalhe" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_deletar_gasto"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Excluir Gasto"
+        android:backgroundTint="@color/coral_accent"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_atualizar_gasto"
+        app:layout_constraintStart_toStartOf="@+id/containerDetalhe"
+        app:layout_constraintEnd_toEndOf="@+id/containerDetalhe" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
